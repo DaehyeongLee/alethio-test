@@ -1,11 +1,18 @@
 import React from 'react';
 import { Form, Input, Button } from 'antd';
-import { Formik } from 'formik';
 //Formik: Submit, Validation, Error message등 쉽게 적용하기 위함
-import * as Yup from 'yup';
+import { Formik } from 'formik';
 //Yup: 유효성 검사를 위함
+import * as Yup from 'yup';
+//Redux Action
+import {signupUser} from "../../../_actions/user_action";
+//For redux
+import { useDispatch } from "react-redux";
 
-function SignupPage() {
+
+function SignupPage(props) {
+    
+    const dispatch = useDispatch(); //Redux dispatch
 
     return (
         <Formik
@@ -43,8 +50,18 @@ function SignupPage() {
                         phone: values.phone
                     };
 
+                    //Redux를 통해 Store에 결과 토큰값을 저장. 완료후 "/" 경로로 이동
+                    dispatch(signupUser(dataToSubmit)).then(response => {
+                        if (response.payload) {
+                          //type: "signup_user" payload.token: "12345678"
+                          props.history.push("/");
+                        } else {
+                          alert("Failed to sign up")
+                        }
+                      })
 
-                    setSubmitting(false); //Submitting state를 false로 초기화
+
+                    setSubmitting(false); //Submitting state를 false로 바꿔 한번 submit 클릭하면 버튼 disable화
                 }, 500);
             }}
         >
@@ -57,6 +74,18 @@ function SignupPage() {
                 const handleChange = props.handleChange;
                 const handleBlur = props.handleBlur;
                 const handleSubmit = props.handleSubmit;
+
+                const customHandleSubmit = () => {
+                    //Validation에 걸린 필드 있을 경우 alert 발생
+                    if (Object.keys(errors).length > 0) {
+                        alert (`Check the ${Object.keys(errors)[0]} validation`)
+                        //Validation 걸린 필드 중 가장 상위에 있는 필드로 focus
+                        document.getElementById(Object.keys(errors)[0]).focus();
+                    } else {
+                        //Validation걸린 필드 없을 경우 Submit
+                        handleSubmit()
+                    }
+                }
 
                 return (
                     <div className="root">
@@ -132,9 +161,10 @@ function SignupPage() {
                             </Form.Item>
                             {/*Submit 버튼 필드 */}
                             <Form.Item>
-                                <Button onClick={handleSubmit} type="primary" disabled={isSubmitting}>
-                                    Sign Up
+                                <Button onClick={customHandleSubmit} type="primary" disabled={isSubmitting}>
+                                    Sign Up 
                                 </Button>
+                                
                             </Form.Item>
 
                         </Form>

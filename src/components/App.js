@@ -16,7 +16,7 @@ function App() {
           {/*Landing page */}
           <Route exact path="/" component={LandingPage} />
           {/*Sign-up page */}
-          <Route exact path="/signup" component={SignupPage} />
+          <Route exact path="/sign-up" component={SignupPage} />
         </Switch>
       </div>
     </Suspense>

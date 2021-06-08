@@ -1,2 +1,2 @@
 //SERVER ROUTES
-export const HOST_ADDRESS = '106.10.53.116:8099';
+export const HOST_ADDRESS = 'http://106.10.53.116:8099';

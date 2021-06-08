@@ -5,9 +5,25 @@ import './index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 
+import {Provider} from 'react-redux'
+import { applyMiddleware, createStore } from 'redux';
+import promiseMiddleware from 'redux-promise';
+import ReduxThunk from 'redux-thunk';
+import Reducer from './_reducers';
+
+//promise, function 형식을 store에 저장할수 있게하는 미들웨어를 등록한 redux stroe
+const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, ReduxThunk) (createStore)
+
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <Provider
+      store = {createStoreWithMiddleware(Reducer,
+          window.__REDUX_DEVTOOLS_EXTENSION__ &&
+          window.__REDUX_DEVTOOLS_EXTENSION__() //브라우저 extension
+        )}
+    >
+      <App />
+    </Provider>    
   </BrowserRouter>,
   document.getElementById('root')
 );
