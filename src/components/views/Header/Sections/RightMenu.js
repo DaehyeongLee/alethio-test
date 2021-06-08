@@ -8,7 +8,7 @@ function RightMenu(props) {
                 <a href="/">Service</a>
             </Menu.Item>
             <Menu.Item key="signup">
-                <a href="/sign-up">Signup</a>
+                <a href="/signup">Signup</a>
             </Menu.Item>
             <Menu.Item key="login">
                 <a href="/login">Login</a>
