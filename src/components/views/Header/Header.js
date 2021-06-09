@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import RightMenu from './Sections/RightMenu';
 import { Drawer, Button, Icon } from 'antd';
+import logo from '../../../uploads/logo.png';
 import './Sections/Header.css';
 
-function NavBar() {
+function Header(props) {
 
     const [drawerVisible, setdrawerVisible] = useState(false)
 
@@ -21,7 +22,9 @@ function NavBar() {
 
             {/*로고 */}
             <div className="menu__logo">
-                <a href="/">Logo</a>
+                <a href="/">
+                    <img src = {logo} alt = "logo_img" style = {{width: '100%'}} />
+                </a>
             </div>
 
             {/*메뉴 컨테이너 - Right Menu */}
@@ -54,4 +57,4 @@ function NavBar() {
     )
 }
 
-export default NavBar
+export default Header
