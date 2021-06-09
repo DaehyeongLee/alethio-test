@@ -6,8 +6,7 @@ function RightMenu(props) {
 
     const user = useSelector(state => state.user)
 
-    console.log(user.auth)
-    if (user.auth) {
+    if (user.auth && user.auth.token) {
         //로그인 된 경우
         return (
             <Menu mode={props.mode}>

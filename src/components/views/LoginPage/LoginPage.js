@@ -7,12 +7,17 @@ import * as Yup from 'yup';
 //Redux Action
 import {loginUser} from "../../../_actions/user_action";
 //For redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function LoginPage(props) {
 
     const dispatch = useDispatch(); //Redux dispatch
-    
+    const user = useSelector(state => state.user) //Store에 저장된 user token
+
+    //비밀번호를 8글자 미만으로 하여 백엔드 API 호출 시, 401 Unauthorized 실패 응답 코드를 받는다.
+    {user.auth && user.auth.message && //서버로부터 온 response: user.auth, 실패에 대한 메시지: user.auth.message
+        alert(user.auth.message + "\nCheck your password (More than 8 characters)") 
+    }
     return (
         <Formik
             //사용할 변수를 초기화한다.
