@@ -5,39 +5,30 @@ import { Formik } from 'formik';
 //Yup: 유효성 검사를 위함
 import * as Yup from 'yup';
 //Redux Action
-import {signupUser} from "../../../_actions/user_action";
+import {loginUser} from "../../../_actions/user_action";
 //For redux
 import { useDispatch } from "react-redux";
 
+function LoginPage(props) {
 
-function SignupPage(props) {
-    
     const dispatch = useDispatch(); //Redux dispatch
-
+    
     return (
         <Formik
             //사용할 변수를 초기화한다.
             initialValues={{
                 email: '',
                 password: '',
-                confirmPassword: '',
-                phone: ''
             }}
             //유효검사 설정
             validationSchema={Yup.object().shape({
-                //이메일: 이메일 형식이여야 한다.
+                //이메일: Required
                 email: Yup.string()
-                    .required('Email is required')
-                    .email('Email is invalid'),
-                //패스워드: 8~15자로 제한한다.
+                    .required('Email is required'),
+                //패스워드: Required
                 password: Yup.string()
                     .required('Password is required')
-                    .min(8, 'Password must be at least 8 characters')
-                    .max(15, 'Password must be under 15 characters'),
-                //컨펌패스워드: 패스워드와 일치해야한다.
-                confirmPassword: Yup.string()
-                    .required('Confirm Password is required')
-                    .oneOf([Yup.ref('password'), null], 'Passwords must match')
+                    
             })}
             //Submit시 수행
             onSubmit={(values, { setSubmitting }) => {
@@ -47,16 +38,16 @@ function SignupPage(props) {
                     let dataToSubmit = {
                         email: values.email,
                         password: values.password,
-                        phone: values.phone
                     };
 
                     //Redux를 통해 Store에 결과 토큰값을 저장. 완료후 "/" 경로로 이동
-                    dispatch(signupUser(dataToSubmit)).then(response => {
+                    dispatch(loginUser(dataToSubmit)).then(response => {
+                        console.log(response.payload)
                         if (response.payload) {
-                          //type: "signup_user" payload.token: "12345678"
+                          //type: "login_user" payload.token: "12345678"
                           props.history.push("/");
                         } else {
-                          alert("Failed to sign up")
+                          alert("Failed to login")
                         }
                       })
 
@@ -89,7 +80,7 @@ function SignupPage(props) {
 
                 return (
                     <div className="root">
-                        <h2>Sign up</h2>
+                        <h2>Login</h2>
                         <Form style={{ minWidth: '350px' }} onSubmit={handleSubmit} >
                             {/*이메일 필드 */}
                             <Form.Item required label="Email">
@@ -129,40 +120,11 @@ function SignupPage(props) {
                                     <div className="input-feedback">{errors.password}</div>
                                 )}
                             </Form.Item>
-                            {/*컨펌패스워드 필드 */}
-                            <Form.Item required label="Confirm">
-                                <Input
-                                    id="confirmPassword"
-                                    placeholder="Enter your confirmPassword"
-                                    type="password"
-                                    value={values.confirmPassword}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    className={
-                                        //클릭 이후 유효성체크 걸릴 경우 input 색 다르게 함
-                                        errors.confirmPassword && touched.confirmPassword ? 'error' : ''
-                                    }
-                                />
-                                {/*클릭 이후 유효성체크 걸릴 경우 에러 메시지 표출 */}
-                                {errors && touched.confirmPassword && (
-                                    <div className="input-feedback">{errors.confirmPassword}</div>
-                                )}
-                            </Form.Item>
-                            {/*폰넘버 필드 */}
-                            <Form.Item label="Phone">
-                                <Input
-                                    id="phone"
-                                    placeholder="Enter your phone number"
-                                    type="tel"
-                                    value={values.phone}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                />
-                            </Form.Item>
+                           
                             {/*Submit 버튼 필드 */}
                             <Form.Item>
-                                <Button onClick={customHandleSubmit} type="primary" style = {{minWidth: '100%'}} disabled={isSubmitting}>
-                                    Sign Up 
+                                <Button onClick={customHandleSubmit} style = {{marginTop: '10px', minWidth: '100%'}} type="primary" disabled={isSubmitting}>
+                                    Login
                                 </Button>
                                 
                             </Form.Item>
@@ -173,8 +135,6 @@ function SignupPage(props) {
             }}
         </Formik>
     )
-
-
 }
 
-export default SignupPage
+export default LoginPage

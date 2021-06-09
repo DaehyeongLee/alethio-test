@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import Header from "./views/Header/Header";
 import SignupPage from "./views/SignupPage/SignupPage";
 import LandingPage from "./views/LandingPage/LandingPage";
+import LoginPage from "./views/LoginPage/LoginPage";
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
           <Route exact path="/" component={LandingPage} />
           {/*Sign-up page */}
           <Route exact path="/sign-up" component={SignupPage} />
+          {/*Login page */}
+          <Route exact path="/login" component={LoginPage} />
         </Switch>
       </div>
     </Suspense>
