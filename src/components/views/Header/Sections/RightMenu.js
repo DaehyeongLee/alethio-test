@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import {Link} from 'react-router-dom';
 import { Menu } from 'antd';
 import { useSelector} from 'react-redux';
 
@@ -6,18 +7,19 @@ function RightMenu(props) {
 
     const user = useSelector(state => state.user)
 
+    //Link - redux state 초기화 없이 이동
     if (user.auth && user.auth.token) {
         //로그인 된 경우
         return (
             <Menu mode={props.mode}>
-                <Menu.Item key="service">
-                    <a href="/">Service</a>
+                <Menu.Item key="service">                   
+                    <Link key="/" to="/">Service</Link>
                 </Menu.Item>
                 <Menu.Item key="mypage">
-                    <a href="/mypage/order">MyPage</a>
+                    <Link key="/mypage/order" to="/mypage/order">MyPage</Link>
                 </Menu.Item>
                 <Menu.Item key="logout">
-                    <a href="/logout">LogOut</a>
+                    <Link key="/logout" to="/logout">LogOut</Link>
                 </Menu.Item>
             </Menu>
         )
@@ -27,13 +29,13 @@ function RightMenu(props) {
         return (
             <Menu mode={props.mode}>
                 <Menu.Item key="service">
-                    <a href="/">Service</a>
+                    <Link key="/" to="/">Service</Link>
                 </Menu.Item>
                 <Menu.Item key="signup">
-                    <a href="/sign-up">Signup</a>
+                    <Link key="/sign-up" to="/sign-up">Signup</Link>                  
                 </Menu.Item>
                 <Menu.Item key="login">
-                    <a href="/login">Login</a>
+                    <Link key="/login" to="/login">Login</Link>                    
                 </Menu.Item>
             </Menu>
         )

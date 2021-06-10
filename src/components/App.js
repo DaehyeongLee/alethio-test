@@ -4,6 +4,8 @@ import Header from "./views/Header/Header";
 import SignupPage from "./views/SignupPage/SignupPage";
 import LandingPage from "./views/LandingPage/LandingPage";
 import LoginPage from "./views/LoginPage/LoginPage";
+import MyPage from "./views/MyPage/MyPage";
+import MyPageDetail from "./views/MyPageDetail/MyPageDetail";
 
 function App() {
   return (
@@ -20,6 +22,10 @@ function App() {
           <Route exact path="/sign-up" component={SignupPage} />
           {/*Login page */}
           <Route exact path="/login" component={LoginPage} />
+          {/*My page */}
+          <Route exact path="/mypage/order" component={MyPage} />
+          {/*My page - Detail*/}
+          <Route exact path="/mypage/order/:id" component={MyPageDetail} />
         </Switch>
       </div>
     </Suspense>
