@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import { HOST_ADDRESS } from '../../Config';
-import './Sections/MyPage.css';
+import '../Commons/Table.css';
 import Pagination from './Sections/Pagination';
 
 function MyPage() {
@@ -27,9 +28,6 @@ function MyPage() {
         setloading(false) //로딩 표시 off
     } 
 
-    console.log(orderList)
-    console.log("totalpage", totalPages)
-
     return (
         <div className="root">
             <h2>Order List</h2>
@@ -38,7 +36,7 @@ function MyPage() {
             {loading &&
                 <div style={{ fontSize: '18px', fontWeight: 'bold', paddingTop: '5px' }}> loading... </div>
             }
-            
+
             {!loading &&
                 <table>
                     <thead>
@@ -52,7 +50,8 @@ function MyPage() {
                         {orderList && orderList.map((item, index) => {
                                 return <tr key={index}>
                                     <td>{item.id}</td>
-                                    <td><a onClick = {() => console.log("hi")}>{item.itemName}</a></td>
+                                    {/*클릭시 id를 URL 파라미터로 넘김 */}
+                                    <td><Link key= {`/mypage/order/${item.id}`} to= {`/mypage/order/${item.id}`}>{item.itemName}</Link></td>
                                 </tr>   
                             })
                         }                        
