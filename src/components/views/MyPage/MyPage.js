@@ -50,7 +50,7 @@ function MyPage() {
                         {orderList && orderList.map((item, index) => {
                                 return <tr key={index}>
                                     <td>{item.id}</td>
-                                    {/*클릭시 id를 URL 파라미터로 넘김 */}
+                                    {/*각 주문 아이템을 클릭 시, 상세 주문 페이지로 이동. 클릭시 id를 URL 파라미터로 넘김. */}
                                     <td><Link key= {`/mypage/order/${item.id}`} to= {`/mypage/order/${item.id}`}>{item.itemName}</Link></td>
                                 </tr>   
                             })
@@ -58,6 +58,7 @@ function MyPage() {
                     </tbody>
                 </table>                
             }
+            {/*페이지네이션 */}
             <Pagination totalPages={totalPages} setcurrentPage={setcurrentPage}/>
         </div>
 

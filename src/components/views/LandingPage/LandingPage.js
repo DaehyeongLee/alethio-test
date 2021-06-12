@@ -22,9 +22,11 @@ function LandingPage(props) {
         <div className="root">
             
             <Form style={{ minWidth: '350px' }} onSubmit = {onSubmit}> 
+                {/*서비스 상단에 이미지 */}
                 <img src = {image} alt = 'serviceImage' style = {{width: '100%'}}/>
+                {/*이미지 하단에 주문 하기 버튼 */}
                 <Button onClick={onSubmit} style = {{marginTop: '10px', minWidth: '100%'}} type="primary">
-                    Submit
+                    주문하기
                 </Button>
             </Form>
         

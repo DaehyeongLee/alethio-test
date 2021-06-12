@@ -6,7 +6,7 @@ import '../Commons/Table.css';
 function MyPageDetail(props) {
 
     const itemId = props.match.params.id; //URL에서 Item Id를 가져옴
-    const [orderDetail, setorderDetail] = useState({})
+    const [orderDetail, setorderDetail] = useState({})  //Detail 정보 저장될 State
 
     useEffect( async () => {
         //Order Detail: 

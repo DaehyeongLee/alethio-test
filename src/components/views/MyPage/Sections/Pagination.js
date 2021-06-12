@@ -11,6 +11,7 @@ function Pagination(props) {
 
     const renderPages = pageNumbers.map((number, index) => {
         return <li key = {index} style = {{display: 'inline-block', fontSize: '18px', padding: '10px'}}>
+            {/*페이지 번호가 1인 경우, 백엔드 API 는 number-1인 0을 보내줘 /order?page=0 을 호출한다 */}
             <a onClick={() => props.setcurrentPage(number-1)}>{number}</a>
         </li>
     })

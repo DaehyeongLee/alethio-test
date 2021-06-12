@@ -130,10 +130,10 @@ function SignupPage(props) {
                                 )}
                             </Form.Item>
                             {/*컨펌패스워드 필드 */}
-                            <Form.Item required label="Confirm">
+                            <Form.Item required label="Confirm Password">
                                 <Input
                                     id="confirmPassword"
-                                    placeholder="Enter your confirmPassword"
+                                    placeholder="Enter your confirm password"
                                     type="password"
                                     value={values.confirmPassword}
                                     onChange={handleChange}

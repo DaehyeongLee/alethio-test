@@ -16,7 +16,7 @@ function LoginPage(props) {
 
     //비밀번호를 8글자 미만으로 하여 백엔드 API 호출 시, 401 Unauthorized 실패 응답 코드를 받는다.
     {user.auth && user.auth.message && //서버로부터 온 response: user.auth, 실패에 대한 메시지: user.auth.message
-        alert(user.auth.message + "\nCheck your password (More than 8 characters)") 
+        alert("Check your password (More than 8 characters)") 
     }
     return (
         <Formik

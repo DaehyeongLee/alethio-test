@@ -52,6 +52,7 @@
   }
 
 /*모바일 버전을 위한 Media Query */
+/*Mobile : 가로 414px 이하*/
 @media (max-width: 414px) {
     .menu__mobile-button {
       display: inline-block !important;

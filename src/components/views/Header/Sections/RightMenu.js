@@ -11,7 +11,7 @@ function RightMenu(props) {
     if (user.auth && user.auth.token) {
         //로그인 된 경우
         return (
-            <Menu mode={props.mode}>
+            <Menu mode={props.mode} onClick={props.closeDrawer}>
                 <Menu.Item key="service">                   
                     <Link key="/" to="/">Service</Link>
                 </Menu.Item>
@@ -27,7 +27,7 @@ function RightMenu(props) {
     else {
         //로그인 안된 경우
         return (
-            <Menu mode={props.mode}>
+            <Menu mode={props.mode} onClick={props.closeDrawer}>
                 <Menu.Item key="service">
                     <Link key="/" to="/">Service</Link>
                 </Menu.Item>

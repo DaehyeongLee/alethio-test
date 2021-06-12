@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
 import RightMenu from './Sections/RightMenu';
 import { Drawer, Button, Icon } from 'antd';
 import logo from '../../../uploads/logo.png';
 import './Sections/Header.css';
 
-function Header(props) {
+function Header() {
 
     const [drawerVisible, setdrawerVisible] = useState(false)
 
@@ -21,7 +20,7 @@ function Header(props) {
     return (
         <nav className="menu" style={{ position: 'fixed', zIndex: 5, width: '100%' }}>
 
-            {/*로고 */}
+            {/*서비스 로고 */}
             <div className="menu__logo">
                 <a href="/">
                     <img src = {logo} alt = "logo_img" style = {{width: '100%'}} />
@@ -47,11 +46,10 @@ function Header(props) {
                     title="Menu"
                     placement="right"
                     className="menu_drawer"
-                    closable={false}
                     onClose={closeDrawer}
                     visible={drawerVisible} //값이 true일 경우 drawer open
                 >
-                    <RightMenu mode="inline" />
+                    <RightMenu mode="inline" closeDrawer={closeDrawer}/>
                 </Drawer>
             </div>
         </nav>
