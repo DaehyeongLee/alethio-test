@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import RightMenu from './Sections/RightMenu';
 import { Drawer, Button, Icon } from 'antd';
-import logo from '../../../uploads/logo.png';
 import './Sections/Header.css';
 
 function Header() {
@@ -18,12 +17,12 @@ function Header() {
     }
 
     return (
-        <nav className="menu" style={{ position: 'fixed', zIndex: 5, width: '100%' }}>
+        <nav className="menu" style={{ position: 'fixed', zIndex: 5, width: '100%', overflow: 'hidden' }}>
 
             {/*서비스 로고 */}
             <div className="menu__logo">
                 <a href="/">
-                    <img src = {logo} alt = "logo_img" style = {{width: '100%'}} />
+                    MyApp
                 </a>
             </div>
 
